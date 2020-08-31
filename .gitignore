@@ -1,0 +1,26 @@
+/node_modules
+/dist
+/**/dist
+/**/node_modules
+
+.DS_Store
+node_modules
+/dist
+/old_FRONTEND
+/**/old_FRONTEND
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
