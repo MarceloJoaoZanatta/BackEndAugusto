@@ -1,15 +1,32 @@
 import { ClsAnimal } from "./ClsAnimal"
 
-console.log( "Augutos" )
+let clsAnimal: ClsAnimal = new ClsAnimal()
 
-let x: ClsAnimal = new ClsAnimal()
+clsAnimal.add( {
+  idade: 10,
+  nome: 'Sophie',
+  raca: 'Golden',
+  cidade: 'Divinopolis'
+} )
 
-x.setarNome( "Fleek" )
+clsAnimal.add( {
+  idade: 5,
+  nome: 'Pestia',
+  raca: 'Vira Lata',
+  cidade: 'Divinopolis'
+} )
 
-console.log( x.getNome() )
+clsAnimal.addDono( 'Zanatta' )
+clsAnimal.addDono( 'Augusto' )
 
-x.raca = 'Golden'
+clsAnimal.ordenarDonos()
+clsAnimal.ordenarAnimais()
 
-x.agregarNaRaca(' Retriever')
+console.log( "Donos dos animais" )
+console.log( "=================" )
+console.log( clsAnimal.donosDeAnimais() )
 
-console.log( x.raca )
+console.log( "\n\n\n\n" )
+console.log( "Animais Cadastrados" )
+console.log( "===================" )
+console.log( clsAnimal.animaisCadastrados() )

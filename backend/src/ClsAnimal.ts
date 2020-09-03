@@ -1,31 +1,58 @@
+
+export interface animalTypeInterface {
+  raca: string
+  nome: string
+  idade: number
+  cidade: string
+}
+
 export class ClsAnimal {
 
-  private tmp_raca: string = ''
-  private tmp_nome: string = ''
+  private animais: Array<animalTypeInterface> = []
+  private donos: Array<string> = []
 
-  // Errado
-  public setarNome ( nome: string ): void {
-    this.tmp_nome = nome
+  public add ( animal: animalTypeInterface ) {
+    this.animais.push( animal )
   }
 
-  // Errado
-  public getNome (): string {
-    return this.tmp_nome
+  public addDono ( nome: string ) {
+    this.donos.push( nome )
   }
 
-  // Correto
-  public set raca ( novaRaca: string ) {
-    this.tmp_raca = novaRaca
+  public donosDeAnimais (): Array<string> {
+    return this.donos
   }
 
-  // Correto
-  public get raca (): string {
-    return this.tmp_raca
+  public animaisCadastrados (): Array<animalTypeInterface> {
+    return this.animais
   }
 
-  // Correto
-  public agregarNaRaca ( oque: string ): void {
-    this.tmp_raca = this.tmp_raca.concat( oque )
+  public ordenarDonos (): void {
+    this.donos = this.donos.sort()
+  }
+
+  public ordenarAnimais (): void {
+    this.animais = this.animais.sort( ( p1: animalTypeInterface, p2: animalTypeInterface ) => {
+
+      let retorno: number = 0
+
+      /*
+      if ( p1.idade > p2.idade ) {
+        retorno = 1
+      } else if ( p1.idade < p2.idade ) {
+        retorno = -1
+      }
+      */
+
+      if ( p1.nome > p2.nome ) {
+        retorno = 1
+      } else if ( p1.nome < p2.nome ) {
+        retorno = -1
+      }
+
+      return retorno
+
+    } )
   }
 
 }
