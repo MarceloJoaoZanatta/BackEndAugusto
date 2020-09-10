@@ -18,7 +18,7 @@ createConnection().then( async connection => {
     console.log( "01 - Saved a new user with id: " + rsSaveUser.id );
   } )
 
-  console.log( "Loading users from the database..." );
+  console.log( "02 - Loading users from the database..." );
 
   /*
   const users = await connection.manager.find( User );
@@ -26,9 +26,9 @@ createConnection().then( async connection => {
   */
 
   connection.manager.find( User ).then( ( rsFindUser: Array<User> ) => {
-    console.log( "Loaded users: ", rsFindUser );
+    console.log( "03 - Loaded users: ", rsFindUser );
   } )
 
-  console.log( "Here you can setup and run express/koa/any other framework." );
+  console.log( "04 - Here you can setup and run express/koa/any other framework." );
 
 } ).catch( error => console.log( error ) );
