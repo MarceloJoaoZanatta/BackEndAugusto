@@ -1,32 +1,34 @@
-import { ClsAnimal } from "./ClsAnimal"
+import "reflect-metadata";
+import { createConnection } from "typeorm";
+import { User } from "./entity/User";
 
-let clsAnimal: ClsAnimal = new ClsAnimal()
+createConnection().then( async connection => {
 
-clsAnimal.add( {
-  idade: 10,
-  nome: 'Sophie',
-  raca: 'Golden',
-  cidade: 'Divinopolis'
-} )
+  console.log( "Inserting a new user into the database..." );
+  const user = new User();
+  user.firstName = "Timber";
+  user.lastName = "Saw";
+  user.age = 25;
+  /*
+  await connection.manager.save(user);
+  console.log("Saved a new user with id: " + user.id);
+  */
 
-clsAnimal.add( {
-  idade: 5,
-  nome: 'Pestia',
-  raca: 'Vira Lata',
-  cidade: 'Divinopolis'
-} )
+  connection.manager.save( user ).then( rsSaveUser => {
+    console.log( "01 - Saved a new user with id: " + rsSaveUser.id );
+  } )
 
-clsAnimal.addDono( 'Zanatta' )
-clsAnimal.addDono( 'Augusto' )
+  console.log( "Loading users from the database..." );
 
-clsAnimal.ordenarDonos()
-clsAnimal.ordenarAnimais()
+  /*
+  const users = await connection.manager.find( User );
+  console.log( "Loaded users: ", users );
+  */
 
-console.log( "Donos dos animais" )
-console.log( "=================" )
-console.log( clsAnimal.donosDeAnimais() )
+  connection.manager.find( User ).then( ( rsFindUser: Array<User> ) => {
+    console.log( "Loaded users: ", rsFindUser );
+  } )
 
-console.log( "\n\n\n\n" )
-console.log( "Animais Cadastrados" )
-console.log( "===================" )
-console.log( clsAnimal.animaisCadastrados() )
+  console.log( "Here you can setup and run express/koa/any other framework." );
+
+} ).catch( error => console.log( error ) );
