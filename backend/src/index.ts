@@ -1,34 +1,19 @@
+
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { User } from "./entity/User";
+import ClsCliente from "./ClsCliente";
+
+import * as moment from 'moment'; // ou import moment = require( "moment" )
 
 createConnection().then( async connection => {
 
-  console.log( "Inserting a new user into the database..." );
-  const user = new User();
-  user.firstName = "Timber";
-  user.lastName = "Saw";
-  user.age = 25;
-  /*
-  await connection.manager.save(user);
-  console.log("Saved a new user with id: " + user.id);
-  */
+  let clsCliente: ClsCliente = new ClsCliente( connection )
 
-  connection.manager.save( user ).then( rsSaveUser => {
-    console.log( "01 - Saved a new user with id: " + rsSaveUser.id );
+  clsCliente.addCliente( {
+    nome: 'Augusto XXXX LSADJFG DFLKG SDFGJLASD FJLKASD FLKSJDF LKSAJDFLKA SKFD ',
+    dataNascimento: moment( '03/08/1994', 'DD/MM/YYYY' ).toDate(),
+    sobrenome: 'César',
+    idCliente: null
   } )
 
-  console.log( "02 - Loading users from the database..." );
-
-  /*
-  const users = await connection.manager.find( User );
-  console.log( "Loaded users: ", users );
-  */
-
-  connection.manager.find( User ).then( ( rsFindUser: Array<User> ) => {
-    console.log( "03 - Loaded users: ", rsFindUser );
-  } )
-
-  console.log( "04 - Here you can setup and run express/koa/any other framework." );
-
-} ).catch( error => console.log( error ) );
+} )

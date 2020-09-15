@@ -1,12 +1,12 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "191.252.101.255",
    "port": 3306,
-   "username": "test",
-   "password": "test",
-   "database": "test",
+   "username": "augusto",
+   "password": "Fleek@2020",
+   "database": "teste_performance",
    "synchronize": true,
-   "logging": false,
+   "logging": true,
    "entities": [
       "src/entity/**/*.ts"
    ],
