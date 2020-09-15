@@ -6,7 +6,7 @@
    "password": "Fleek@2020",
    "database": "teste_performance",
    "synchronize": true,
-   "logging": true,
+   "logging": false,
    "entities": [
       "src/entity/**/*.ts"
    ],

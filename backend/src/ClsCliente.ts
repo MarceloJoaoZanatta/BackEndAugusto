@@ -6,12 +6,15 @@ export default class ClsCliente {
   private conexao: Connection
 
   public constructor( conexao: Connection ) {
-    console.log( 'Dentro do Construtor - Recebi a conexao....' )
     this.conexao = conexao
   }
 
-  public addCliente ( cliente: Cliente ) {
+  public add ( cliente: Cliente ) {
     this.conexao.getRepository( Cliente ).save( cliente )
+  }
+
+  public procurar ( idCliente: number ): Promise<Cliente> {
+    return this.conexao.getRepository( Cliente ).findOne( idCliente )
   }
   /*
   
